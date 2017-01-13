@@ -39,11 +39,12 @@
                       <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
                      </div>
                 </div>
+                <div class="md-form-group col-sm-12">
                 <footer class=" text-center">
                     <button type="submit" class="btn btn-success">Ok</button>
                     <button type="reset" class="btn btn-danger">Cancel</button>
                 </footer> 
-              </div>
+              </div></div>
           </div>
         </form>
       </div>
@@ -53,7 +54,14 @@
               <span class="font-bold">Labour Attendance</span>
             </div><hr>
             <div class="panel-body">
-               <div class="md-form-group">
+             <div ng-app="app" ng-controller="Test">
+       
+         <button  ng-click="show = 1" class="md-btn md-raised m-b btn-fw teal">Intern</button>
+   <button  ng-click="show = 2" class="md-btn md-raised m-b btn-fw pink">Outern</button>
+ 
+    <div class="form-group" ng-show="show==1" >
+       <p>
+    <div class="md-form-group">
                   <md-autocomplete
                     ng-disabled="ctrl.isDisabled"
                     md-no-cache="ctrl.noCache"
@@ -117,7 +125,19 @@
                     </div>
                   </md-input-container> 
               </div>
-              <div class="md-form-group">
+      </p>
+    </div>
+
+         <div class="form-group" ng-show="show==2" >
+       <p> <div class="md-form-group  col-sm-12">
+                <div ng-controller="DatepickerDemoCtrl" class="m-b-lg">
+                   <div class="md-input-group">
+                      <input type="text" class="md-input" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                    <button type="button" class="btn btn-default" ng-click="open($event)" style="margin-left: 270px;margin-top: -70px"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </div>
+                </div>
+              </div>
+       <div class="md-form-group">
                   <md-input-container md-is-error="myForm.name.$invalid && (myForm.$submitted || myForm.name.$dirty)">
                     <label>Square Feet</label>
                     <input type="text" class="md-input" ng-model="user.sqf" name="sqf" id="sqf" ng-required="true">
@@ -125,7 +145,14 @@
                         <div ng-message="required"> Square Feet is required.</div>
                     </div>
                   </md-input-container> 
-              </div>
+              </div></p>
+    </div>
+
+         
+   
+    </div>
+              
+              
               <footer class=" text-center">
                 <button type="submit" class="btn btn-success">Ok</button>
                 <button type="reset" class="btn btn-danger">Cancel</button>
@@ -159,11 +186,13 @@
                     </md-input-container> 
                 </div>
                 <div class="md-form-group  col-sm-12">
-                  <md-content>
-                    <label>Date:</label>
-                    <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
-                  </md-content>
+                <div ng-controller="DatepickerDemoCtrl" class="m-b-lg">
+                   <div class="md-input-group">
+                      <input type="text" class="md-input" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                    <button type="button" class="btn btn-default" ng-click="open($event)" style="margin-left: 270px;margin-top: -70px"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </div>
                 </div>
+              </div>
                 <div class="md-form-group  col-sm-12">
                  <md-content>
                     <label>Time:</label>
@@ -181,4 +210,10 @@
     </div>
   </div>
 </div>
- 
+ <script type="text/javascript">
+        // var app = angular.module('app',[]);
+app.controller('Test',function($scope){
+        $scope.show = 1;
+
+});
+    </script>
