@@ -1,8 +1,10 @@
 <?php
 
-namespace frontend\modules\attendance\models;
+namespace app\modules\attendance\models;
 
 use Yii;
+use app\modules\project\models\Project;
+
 
 /**
  * This is the model class for table "vehicle_attendance".

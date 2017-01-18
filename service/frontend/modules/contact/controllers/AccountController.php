@@ -27,9 +27,9 @@ class AccountController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'index'=>['get'],
-                    'create' =>['POST'],
-                    'update' =>['POST'],
-                    'delete' =>['POST'],
+                    'create-account' =>['POST'],
+                    'update-account' =>['POST'],
+                    'delete-account' =>['POST'],
                 ],
             ],
         ];
@@ -83,7 +83,7 @@ class AccountController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate() {
+    public function actionCreateAccount() {
         $params = Yii::$app->getRequest()->getBodyParams(); 
         $model = new Account();
         $model->attributes=$params;       
@@ -101,7 +101,7 @@ class AccountController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdateAccount($id)
     {    
         $params = Yii::$app->getRequest()->getBodyParams(); 
         $model = new Account();
@@ -121,7 +121,7 @@ class AccountController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id) {
+    public function actionDeleteAccount($id) {
         $model=$this->findModel($id);      
         if($model->delete()) {        
           echo json_encode(array('status'=>"success",'data'=>array('message'=>'record deleted successfully')),JSON_PRETTY_PRINT);    

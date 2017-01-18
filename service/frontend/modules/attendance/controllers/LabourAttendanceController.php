@@ -3,7 +3,7 @@
 namespace app\modules\attendance\controllers;
 use Yii;
 use yii\filters\Cors;
-use app\modules\attendance\models\VehicleAttendance;
+use app\modules\attendance\models\LabourAttendance;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -11,9 +11,9 @@ use yii\filters\VerbFilter;
 use yii\db\Query;
 use yii\helpers\ArrayHelper; 
 
-class VehicleAttendanceController extends \yii\web\Controller
+class LabourAttendanceController extends \yii\web\Controller
 {
-      public function actions() {
+     public function actions() {
      return [
         'corsFilter' => [
             'class' => \yii\filters\Cors::className(),
@@ -42,10 +42,10 @@ public function behaviors() {
         'class' => VerbFilter::className(),
         'actions' => [
         'index'=>['get'],
-        'get-vehicle-attendance'=>['get'],
-        'create-vehicle-attendance'=>['post'],
-        'update-vehicle-attendance'=>['post'],
-        'delete-vehicle-attendance' => ['post'],         
+        'get-labour-attendance'=>['get'],
+        'create-labour-attendance'=>['post'],
+        'update-labour-attendance'=>['post'],
+        'delete-labour-attendance' => ['post'],         
         ],        
       ]
 
@@ -74,22 +74,22 @@ public function behaviors() {
     
   public function actionIndex() {         
     $query= new Query;      
-    $query ->from('vehicle_attendance')      
-    ->select("`id`, `project_id`, `ot_hrs`, `vehicle_cost_id`, `date_time`");           
+    $query ->from('labour_attendance')      
+    ->select("`id`, `labour_id`, `no_of_worker`, `no_of_mazons`, `ot_mazons`, `ot_mazon_hrs`, `ot_workers`, `ot_workers_hrs`, `date_time`");           
     $command = $query->createCommand();
     $models = $command->queryAll();   
     $this->setHeader(200);     
     echo json_encode(array('status'=>"success",'data'=>array_filter($models)),JSON_PRETTY_PRINT);    
   }  
 
-  public function actionGetVehicleAttendance($id) {
+  public function actionGetLabourAttendance($id) {
     $model=$this->findModel($id);      
     $this->setHeader(200);
     echo json_encode(array('status'=>"success",'data'=>array_filter($model->attributes)),JSON_PRETTY_PRINT);   
   }  
-  public function actionCreateVehicleAttendance() {       
+  public function actionCreateLabourAttendance() {       
     $params = Yii::$app->getRequest()->getBodyParams();    
-    $model = new VehicleAttendance();
+    $model = new LabourAttendance();
     $model->attributes=$params;       
     if ($model->save()) {      
       $this->setHeader(200);
@@ -101,7 +101,7 @@ public function behaviors() {
     }     
   } 
 
-  public function actionUpdateVehicleAttendance($id) {
+  public function actionUpdateLabourAttendance($id) {
     $params = Yii::$app->getRequest()->getBodyParams();  
     $model = $this->findModel($id);  
     $model->attributes=$params;
@@ -115,7 +115,7 @@ public function behaviors() {
     }        
   }  
 
-  public function actionDeleteVehicleAttendance($id) {
+  public function actionDeleteLabourAttendance($id) {
     $model=$this->findModel($id);      
     if($model->delete()) { 
       $this->setHeader(200);
@@ -128,7 +128,7 @@ public function behaviors() {
   }
       
   protected function findModel($id) { 
-    if (($model = VehicleAttendance::findOne($id)) !== null) {
+    if (($model = LabourAttendance::findOne($id)) !== null) {
       return $model;
     }
     else {

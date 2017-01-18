@@ -17,7 +17,8 @@ class MaterialPurchasedController extends Controller
       'verbs' => [
         'class' => VerbFilter::className(),
         'actions' => [
-          'index'=>['get'],                   
+          'index'=>['get'], 
+          'date'=>['get'],                  
           'create-material-purchased'=>['post'],
           'update-material-purchased'=>['post'],
           'delete-material-purchased' => ['post'],         
@@ -112,6 +113,15 @@ class MaterialPurchasedController extends Controller
        echo json_encode(array('status'=>"error",'data'=>array('message'=>'record not deleted')),JSON_PRETTY_PRINT);
     }
   }
+
+  public function actionDate() {
+    $model = MaterialPurchased::find()->where(['between', 'date_time', "2017-01-01", "2017-02-28" ])
+    ->all();
+
+    $this->setHeader(200);
+    echo json_encode(array('status'=>"success",'data'=>array_filter($model->attribute)),JSON_PRETTY_PRINT);        
+   
+  }
   //getting the value from Material purchased model    
   protected function findModel($id) { 
     if (($model = MaterialPurchased::findOne($id)) !== null) {
@@ -123,6 +133,13 @@ class MaterialPurchasedController extends Controller
       exit;
     }
   }
+  protected function datefor()
+  {
+    $model = MaterialPurchased::find()->where(['between', 'date_time', "2017-01-01", "2017-02-28" ])
+    ->all();   
+    return $model;
+  }
+
   //setting the header 
     private function setHeader($status) {    
       $status_header = 'HTTP/1.1 ' . $status . ' ' . $this->_getStatusCodeMessage($status);

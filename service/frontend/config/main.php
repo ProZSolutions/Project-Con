@@ -15,7 +15,10 @@ return [
         ],
         'attendance' => [
             'class' => 'app\modules\attendance\Module',
-        ],        
+        ], 
+         'payment' => [
+            'class' => 'app\modules\payment\Module',
+        ],       
     ],
     /*'modules' => [
         'project' => [
@@ -69,7 +72,7 @@ return [
                 'material-purchased/create-material-purchased/<id:\w+>' => 'material-purchased/create-material-purchased',
                 'material-purchased/update-material-purchased/<id:\w+>' => 'material-purchased/update-material-purchased',
                 'material-purchased/delete-material-purchased/<id:\w+>' => 'material-purchased/delete-material-purchased',
-                'material-purchased/get-material-purchased/<id:\w+>' => 'material-purchased/get-material-purchased',
+                'material-purchased/date' => 'material-purchased/date',
 
                 
                 'pettycash/petty-cash/get-petty-cash/<id:\w+>' => 'pettycash/petty-cash/get-petty-cash',
@@ -77,6 +80,16 @@ return [
                 'pettycash/petty-cash-purchase/get-petty-cash-purchase/<id:\w+>' => 'pettycash/petty-cash-purchase/get-petty-cash-purchase',
 
                 'attendance/vehicle-attendance/get-vehicle-attendance/<id:\w+>' =>'attendance/vehicle-attendance',
+                'attendance/vehicle-attendance/delete-vehicle-attendance/<id:\w+>' =>'attendance/vehicle-attendance/delete-vehicle-attendance',
+
+                'attendance/labour-attendance/get-labour-attendance/<id:\w+>' =>'attendance/labour-attendance',
+
+
+                'payment/vehicle-cost/get-vehicle-cost/<id:\w+>' =>'payment/vehicle-cost',
+                'payment/labour-cost/get-labour-cost/<id:\w+>' =>'payment/labour-cost',
+                'payment/bank-details/get-bank-details/<id:\w+>' =>'payment/bank-details',
+                'payment/bank-details/delete-bank-details/<id:\w+>' =>'payment/bank-details/delete-bank-details',
+
 
                 'contact/account/update/<id:\w+>' => 'account/update',
                 //'contact/account/create/<id:\w+>' => 'contact/account/create',
