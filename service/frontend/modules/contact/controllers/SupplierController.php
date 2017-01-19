@@ -1,29 +1,24 @@
 <?php
 
-namespace frontend\controllers;
-
+namespace app\modules\contact\controllers;
 use Yii;
-use app\modules\contact\models\Supplier;
+use frontend\models\Supplier;
+use frontend\models\SupplierSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\Query;
 
-/**
- * SupplierController implements the CRUD actions for Supplier model.
- */
-class SupplierController extends Controller
+class SupplierController extends \yii\web\Controller
 {
-    /**
-     * @inheritdoc
-     */
- public function behaviors()
+     public function behaviors()
     {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'index'=>['get'],
+                    'get-supplier'=>['get'],
                     'create-supplier' =>['POST'],
                     'update-supplier' =>['POST'],
                     'delete-supplier' =>['POST'],
@@ -48,7 +43,7 @@ class SupplierController extends Controller
     $allowed = array_map('strtoupper', $verbs);    
     if (!in_array($verb, $allowed)) {          
      
-      echo json_encode(array('status'=>0,'error_code'=>400,'message'=>'Method not allowed'),JSON_PRETTY_PRINT);
+      echo json_encode(array('status'=>"error",'data'=>array('message'=>'method not allowed')),JSON_PRETTY_PRINT);
       exit;          
     }         
    return true;  
@@ -69,7 +64,12 @@ class SupplierController extends Controller
       echo json_encode(array('status'=>"success",'data'=>array_filter($models)),JSON_PRETTY_PRINT);     
   }
 
-    
+     public function actionGetSupplier($id){   
+
+    $model=$this->findModel($id);      
+   
+    echo json_encode(array('status'=>"success",'data'=>array_filter($model->attributes)),JSON_PRETTY_PRINT);   
+  } 
 
     /**
      * Creates a new Account model.
@@ -147,4 +147,5 @@ class SupplierController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }

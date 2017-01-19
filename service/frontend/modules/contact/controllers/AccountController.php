@@ -1,12 +1,8 @@
 <?php
 
 namespace app\modules\contact\controllers;
-
-
 use Yii;
-//use frontend\modules\contact\Account;
-
-use frontend\models\AccountSearch;
+use app\modules\contact\models\Account;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

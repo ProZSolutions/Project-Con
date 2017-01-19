@@ -18,7 +18,7 @@ class MaterialPurchasedController extends Controller
         'class' => VerbFilter::className(),
         'actions' => [
           'index'=>['get'], 
-          'date'=>['get'],                  
+          'search-supplier-with-date'=>['post'],                  
           'create-material-purchased'=>['post'],
           'update-material-purchased'=>['post'],
           'delete-material-purchased' => ['post'],         
@@ -49,11 +49,10 @@ class MaterialPurchasedController extends Controller
   }   
  //get the all material purchased record     
   public function actionIndex() {      
-  /*  $query= new Query;      
-    $query ->from('material_purchased')      
-    ->select("`id`, `material_id`, `supplier_id`, `invoice_no`, `project_id`, `quantity`, `vehicle_no`, `delivered_by`, `recieved_by`, `bill_no`, `date_time`, `remarks`, `purchased_by`");           
-    $command = $query->createCommand();
-    $models = $command->queryAll(); */
+    // $query= new Query;      
+    // $query ->from('material_purchased')      
+    // ->select("`id`, `material_id`, `supplier_id`, `invoice_no`, `project_id`, `quantity`, `vehicle_no`, `delivered_by`, `recieved_by`, `bill_no`, `date_time`, `remarks`, `purchased_by`");           
+   
     $query = new Query;
     $query  ->select(['material.name','material_purchased.vehicle_no','supplier.name as supplier_name','project.name as project_name'])  
     ->from('material_purchased')
@@ -113,14 +112,29 @@ class MaterialPurchasedController extends Controller
        echo json_encode(array('status'=>"error",'data'=>array('message'=>'record not deleted')),JSON_PRETTY_PRINT);
     }
   }
-
-  public function actionDate() {
-    $model = MaterialPurchased::find()->where(['between', 'date_time', "2017-01-01", "2017-02-28" ])
-    ->all();
-
-    $this->setHeader(200);
-    echo json_encode(array('status'=>"success",'data'=>array_filter($model->attribute)),JSON_PRETTY_PRINT);        
-   
+  //filter with supplier with date
+  public function actionSearchSupplierWithDate() {    
+    $startdate = Yii::$app->request->post('startdate');
+    $enddate = Yii::$app->request->post('enddate');
+    $name = Yii::$app->request->post('supplierName');
+    $query = new Query;
+    $query  ->select(['material.name','material_purchased.date_time','material_purchased.vehicle_no','supplier.name as supplier_name','project.name as project_name'])  
+    ->from('material_purchased')
+    ->where(['between', 'material_purchased.date_time', $startdate, $enddate])
+    ->andWhere(['=','supplier.name',$name])
+    ->innerjoin('material','material.id =material_purchased.material_id')
+    ->innerjoin('project','project.project_id=material_purchased.project_id')
+    ->innerjoin('supplier','material_purchased.supplier_id = supplier.supplier_id');
+    $command = $query->createCommand();
+    $models = $command->queryAll();       
+    if($models != null) {
+      $this->setHeader(200);     
+      echo json_encode(array('status'=>"success",'data'=>array_filter($models)),JSON_PRETTY_PRINT);        
+    }
+    else {
+      $this->setHeader(400);     
+      echo json_encode(array('status'=>"error",'data'=>array('message'=>'record not found')),JSON_PRETTY_PRINT);
+    }
   }
   //getting the value from Material purchased model    
   protected function findModel($id) { 

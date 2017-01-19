@@ -94,6 +94,9 @@ return [
                 'contact/account/update/<id:\w+>' => 'account/update',
                 //'contact/account/create/<id:\w+>' => 'contact/account/create',
 
+
+                'contact/labour/create-labour-contact' => 'contact/labour/create-labour-contact',
+                'contact/supplier/get-supplier/<id:\w+>' => 'contact/supplier/get-supplier',
                 'account/delete/<id:\w+>' => 'account/delete',
 
 
@@ -101,9 +104,9 @@ return [
                 'project/update/<id:\w+>' => 'project/update',
                 'project/delete/<id:\w+>' => 'project/delete',
 
-                'supplier/create/<id:\w+>' => 'supplier/create',
-                'supplier/update/<id:\w+>' => 'supplier/update',
-                'supplier/delete/<id:\w+>' => 'supplier/delete',
+                // 'supplier/create/<id:\w+>' => 'supplier/create',
+                // 'supplier/update/<id:\w+>' => 'supplier/update',
+                // 'supplier/delete/<id:\w+>' => 'supplier/delete',
                 ['class' => 'yii\rest\UrlRule', 'controller' => ['material','material-purchased','account','project','supplier','petty-cash']],   
             ],
         ],
