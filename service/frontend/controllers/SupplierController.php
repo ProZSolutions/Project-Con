@@ -3,8 +3,7 @@
 namespace frontend\controllers;
 
 use Yii;
-use frontend\models\Supplier;
-use frontend\models\SupplierSearch;
+use app\modules\contact\models\Supplier;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -25,9 +24,9 @@ class SupplierController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'index'=>['get'],
-                    'create' =>['POST'],
-                    'update' =>['POST'],
-                    'delete' =>['POST'],
+                    'create-supplier' =>['POST'],
+                    'update-supplier' =>['POST'],
+                    'delete-supplier' =>['POST'],
                 ],
             ],
         ];

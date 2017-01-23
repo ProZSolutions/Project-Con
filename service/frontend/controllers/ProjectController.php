@@ -25,9 +25,9 @@ class ProjectController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'index'=>['get'],
-                    'create' =>['POST'],
-                    'update' =>['POST'],
-                    'delete' =>['POST'],
+                    'create-project' =>['POST'],
+                    'update-project' =>['POST'],
+                    'delete-project' =>['POST'],
                 ],
             ],
         ];
@@ -84,7 +84,7 @@ class ProjectController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreateProject()
     {
     $params = Yii::$app->getRequest()->getBodyParams(); 
    
@@ -108,7 +108,7 @@ class ProjectController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdateProject($id)
     {    
         $params = Yii::$app->getRequest()->getBodyParams(); 
         $model = $this->findModel($id);
@@ -127,7 +127,7 @@ class ProjectController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionDeleteProject($id)
     {
       $model=$this->findModel($id);      
     if($model->delete()) { 
