@@ -176,7 +176,7 @@
         </form>
       </div>
       <div role="tabpanel" class="tab-pane animated fadeIn" id="tab3">
-        <form name="myForm" ng-app="app" ng-controller="" class="container-fluid" ng-submit="myForm.$valid && submit()" novalidate>
+        <form name="myForm" ng-app="app" ng-controller="PaymentEntryController" class="container-fluid" ng-submit="myForm.$valid && submit()" novalidate>
           <div class="panel">
               <div class="panel-heading bg-white text-center">
                 <span class="font-bold">Vehicle Attendance</span>
@@ -200,20 +200,73 @@
                         </div>
                     </md-input-container> 
                 </div>
-                 <div class="md-form-group  col-sm-12">
-                   <div ng-controller="DatepickerDemoCtrl" class="m-b-lg">
-                     <div class="md-input-group">
-                        <input type="text" class="md-input" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                      <button type="button" class="btn btn-default" ng-click="open($event)" style="margin-left: 270px;margin-top: -70px"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </div>
-                  </div>
+                  <div class="md-form-group >
+                    <md-input-container md-is-error="myForm.name.$invalid && (myForm.$submitted || myForm.name.$dirty)">
+                        <label>List Of Recepits unpaid:</label>
+                     
+                    </md-input-container> 
                 </div>
-                <div class="md-form-group  col-sm-12">
-                 <md-content>
-                    <label>Time:</label>
-                    <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" ></timepicker>
-                </md-content>
+                <div class="md-form-group >
+                    <md-input-container md-is-error="myForm.name.$invalid && (myForm.$submitted || myForm.name.$dirty)">
+                        <label>Total Recepits Selected:00</label>
+                     
+                    </md-input-container> 
+                </div>
+                <div class="md-form-group >
+                    <md-input-container md-is-error="myForm.name.$invalid && (myForm.$submitted || myForm.name.$dirty)">
+                        <label>Total Amount:000</label>
+                     
+                    </md-input-container> 
+                </div>
+                <div class="md-form-group >
+                    <md-input-container md-is-error="myForm.name.$invalid && (myForm.$submitted || myForm.name.$dirty)">
+                        <label>Grand Pay:1,00,000</label>
+                     
+                    </md-input-container> 
+                </div>
+
+   
+         
+        <label for="chkPassport">
+            <input type="checkbox" id="chkPassport" ng-model="ShowPassport" ng-change="ShowHide()" />
+          Description
+        </label>
+       
+        <div ng-show="IsVisible">
+           Reason:
+            <input type="text" id="txtPassportNumber" />
+             Amount:
+            <input type="text" id="txtPassportNumber" />
+        </div>
+    
+            <div ng-controller="SerCtrl" class="md-padding demo">
+  <div layout="row" layout-wrap>
+    <div flex="100" layout="column">
+      <div>
+        <fieldset class="demo-fieldset" >
+          
+          <div layout="row" layout-wrap flex>
+          <div flex-xs flex="50">
+         
+            <md-checkbox aria-label="Select All"
+                         ng-checked="isChecked()"
+                         md-indeterminate="isIndeterminate()"
+                         ng-click="toggleAll()">
+              <span ng-if="isChecked()">Un-</span>Select All
+            </md-checkbox>
+
+          </div>
+         
+            <div class="demo-select-all-checkboxes" flex="100" ng-repeat="item in items">
+              <md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+               {{ item }}
+              </md-checkbox>
             </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+</div>
             <footer class=" text-center">
               <button type="submit" class="btn btn-success">Ok</button>
               <button type="reset" class="btn btn-danger">Cancel</button>
@@ -232,3 +285,53 @@ app.controller('Test',function($scope){
 
 });
     </script>
+    <script type="text/javascript">
+ // angular.module('checkboxDemo3', ['ngMaterial'])
+
+app.controller('SerCtrl', function($scope) {
+  $scope.items = [1,2,3,4,5];
+  $scope.selected = [1];
+  $scope.toggle = function (item, list) {
+    var idx = list.indexOf(item);
+    if (idx > -1) {
+      list.splice(idx, 1);
+    }
+    else {
+      list.push(item);
+    }
+  };
+
+  $scope.exists = function (item, list) {
+    return list.indexOf(item) > -1;
+  };
+
+  $scope.isIndeterminate = function() {
+    return ($scope.selected.length !== 0 &&
+        $scope.selected.length !== $scope.items.length);
+  };
+
+  $scope.isChecked = function() {
+    return $scope.selected.length === $scope.items.length;
+  };
+
+  $scope.toggleAll = function() {
+    if ($scope.selected.length === $scope.items.length) {
+      $scope.selected = [];
+    } else if ($scope.selected.length === 0 || $scope.selected.length > 0) {
+      $scope.selected = $scope.items.slice(0);
+    }
+  };
+});
+</script>
+    <script type="text/javascript">
+       // var app = angular.module('MyApp', [])
+       // app.controller('MyController', function ($scope) {
+            //This will hide the DIV by default.
+            $scope.IsVisible = false;
+            $scope.ShowHide = function () {
+                //If DIV is visible it will be hidden and vice versa.
+                $scope.IsVisible = $scope.ShowPassport;
+            }
+      
+    </script>
+    

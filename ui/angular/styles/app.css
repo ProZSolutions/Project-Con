@@ -1147,7 +1147,7 @@ a.list-group-item.hover {
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus,
 .nav-pills > li.active > a:active {
-  color: rgba(0, 0, 0, 0.87);
+  color: #000;
   background-color: #dddee0;
 }
 
@@ -1167,8 +1167,9 @@ a.list-group-item.hover {
 .nav-tabs > li:hover > a,
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover .nav-tabs > li.active > a:focus {
-  background-color: #fff;
+ /* background-color: #fff;*/
   border-color: #dddee0;
+  color: #000;
 }
 
 .nav-tabs > li.active > a {
@@ -1285,6 +1286,7 @@ a.list-group-item.hover {
 
 .navbar .navbar-brand:hover {
   text-decoration: none;
+  color: #000;
 }
 
 .navbar .navbar-brand img,

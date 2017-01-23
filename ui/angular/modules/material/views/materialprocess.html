@@ -8,6 +8,24 @@
  
     <div class="form-group" ng-show="show==1" >
        <p>
+       <div class="md-form-group col-sm-3"><label>From</label>
+                <md-input-container md-is-error="myForm.name.$invalid && (myForm.$submitted || myForm.name.$dirty)">
+                  <div ng-controller="DatepickerDemoCtrl" class="m-b-lg">
+                 
+                    <input type="text" class="md-input" datepicker-popup="{{format}}" ng-model="FromDate" is-open="opened"  datepicker-options="dateOptions" ng-required="true" />
+                    <button type="button" class="btn btn-default" ng-click="open($event)" style="margin-top: -60px;margin-left: 90px;"><i class="glyphicon glyphicon-calendar"></i></button>
+                 </div>
+                </md-input-container> 
+              </div>
+              <div class="md-form-group col-sm-3">
+              <label>To</label>
+                <md-input-container md-is-error="myForm.name.$invalid && (myForm.$submitted || myForm.name.$dirty)">
+                  <div ng-controller="DatepickerDemoCtrl1">
+                    <input type="text" class="md-input" datepicker-popup="{{format}}" ng-model="ToDate" is-open="opened"  datepicker-options="dateOptions" ng-required="true"  />
+                    <button type="button" class="btn btn-default" ng-click="open($event)" style="margin-top: -60px;margin-left: 90px;"><i class="glyphicon glyphicon-calendar"></i></button>
+                 </div>
+                </md-input-container> 
+              </div>
     <div ng-app="TableFilterApp" ng-controller="TableFilterController">
      <table>
     <tr><th> Material Name</th></tr>
@@ -142,6 +160,89 @@ app.controller('Test',function($scope){
           ];
         
         });
+
+       app.controller('DatepickerDemoCtrl', ['$scope', function($scope) {
+   // $scope.today = function() {
+   //     $scope.date = new Date();
+   //   };
+   //   $scope.today();
+
+   //  $scope.clear = function () {
+   //    $scope.dt = null;
+   //  };
+    // $scope.date=new Date();
+    var date = new Date();
+ $scope.FromDate = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+
+    // Disable weekend selection
+    $scope.disabled = function(date, mode) {
+      return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+    };
+
+    $scope.toggleMin = function() {
+      $scope.minDate = $scope.minDate ? null : new Date();
+    };
+    $scope.toggleMin();
+
+    $scope.open = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+
+      $scope.opened = true;
+    };
+
+    $scope.dateOptions = {
+      formatYear: 'yy',
+      startingDay: 1,
+      class: 'datepicker'
+    };
+
+    // $scope.initDate = new Date('2016-15-20');
+    // $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    // $scope.format = $scope.formats[0];
+  }])
+  ; 
+    app.controller('DatepickerDemoCtrl1', ['$scope', function($scope) {
+   // $scope.today = function() {
+   //     $scope.DatepickerDemoCtrl = new Date();
+   //   };
+   //   $scope.today();
+
+   //  $scope.clear = function () {
+   //    $scope.date = null;
+   //  };
+    // $scope.dt=new Date();
+    var date = new Date();
+ $scope.ToDate = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+
+    // Disable weekend selection
+    // $scope.disabled = function(date, mode) {
+    //   return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+    // };
+
+    $scope.toggleMin = function() {
+      $scope.minDate = $scope.minDate ? null : new Date();
+    };
+    $scope.toggleMin();
+
+    $scope.open = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+
+      $scope.opened = true;
+    };
+
+    $scope.dateOptions = {
+      formatYear: 'yy',
+      startingDay: 1,
+      class: 'datepicker'
+    };
+
+    // $scope.initDate = new Date('2016-15-20');
+    // $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    // $scope.format = $scope.formats[0];
+  }])
+  ; 
       </script>
      
     

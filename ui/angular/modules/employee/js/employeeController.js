@@ -17,16 +17,18 @@
       };
       $scope.reset();
     });
-app.controller('DatepickerDemoCtrl', ['$scope', function($scope) {
-//    $scope.today = function() {
-//        $scope.dt = new Date();
-//      };
-//      $scope.today();
+   app.controller('DatepickerDemoCtrl', ['$scope', function($scope) {
+   // $scope.today = function() {
+   //     $scope.date = new Date();
+   //   };
+   //   $scope.today();
 
-    // $scope.clear = function () {
-    //   $scope.dt = null;
-    // };
-    $scope.dt=new Date();
+   //  $scope.clear = function () {
+   //    $scope.dt = null;
+   //  };
+    // $scope.date=new Date();
+    var date = new Date();
+ $scope.Date = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
 
     // Disable weekend selection
     $scope.disabled = function(date, mode) {
