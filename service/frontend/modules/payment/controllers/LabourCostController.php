@@ -13,42 +13,19 @@ use yii\helpers\ArrayHelper;
 
 class LabourCostController extends \yii\web\Controller
 {
-     public function actions() {
-     return [
-        'corsFilter' => [
-            'class' => \yii\filters\Cors::className(),
-            'cors' => [
-                // restrict access to
-                'Origin' => ['*'],
-                'Access-Control-Allow-Origin'=> ['*'],
-                'Access-Control-Request-Method' => ['POST', 'PUT'],
-                // Allow only POST and PUT methods
-                'Access-Control-Request-Headers' => ['*'],
-                // Allow only headers 'X-Wsse'
-                'Access-Control-Allow-Credentials' => true,
-                // Allow OPTIONS caching
-                'Access-Control-Max-Age' => 3600,
-                // Allow the X-Pagination-Current-Page header to be exposed to the browser.
-                'Access-Control-Expose-Headers' => [],
-            ],
-
-        ],
-    ];
- } 
-
-public function behaviors() {  
+  public function behaviors() {  
     return [
-        'verbs' => [
+      'verbs' => [
         'class' => VerbFilter::className(),
         'actions' => [
         'index'=>['get'],
         'get-labour-cost'=>['get'],
         'create-labour-cost'=>['post'],
         'update-labour-cost'=>['post'],
-        'delete-labour-cost' => ['post'],         
+        'delete-labour-cost'=>['post'],
+        'search-labour-cost'=>['post'],         
         ],        
       ]
-
     ];
   }
   public function beforeAction($event) {
@@ -137,6 +114,30 @@ public function behaviors() {
       exit;
     }
   }
+
+  /*public function actionSearchLabourCost() {    
+    $StartDate = Yii::$app->request->post('startDate');   
+    $EndDate = Yii::$app->request->post('endDate');  
+    $LabourId = Yii::$app->request->post('labourId');
+    $query = new Query;    
+    $query ->select(['labour.name', 'labour_attendance.no_of_mazons'])
+      ->from('vehicle_attendance')  
+    ->where(['between', 'labour_attendance.date_time', $StartDate, $EndDate])
+    ->andWhere(['=','labour_attendance.labour_id',$LabourId])
+    ->innerjoin('labour','labour.labour_id = labour_attendance.labour_id');
+    //->innerjoin('project','project.project_id=material_purchased.project_id')
+    //->innerjoin('supplier','material_purchased.supplier_id = supplier.supplier_id');
+    $command = $query->createCommand();
+    $models = $command->queryAll();       
+    if($models != null) {
+      $this->setHeader(200);     
+      echo json_encode(array('status'=>"success",'data'=>array_filter($models)),JSON_PRETTY_PRINT);        
+    }
+    else {
+      $this->setHeader(400);     
+      echo json_encode(array('status'=>"error",'data'=>array('message'=>'record not found')),JSON_PRETTY_PRINT);
+    }
+  }*/
   
     private function setHeader($status) {    
       $status_header = 'HTTP/1.1 ' . $status . ' ' . $this->_getStatusCodeMessage($status);

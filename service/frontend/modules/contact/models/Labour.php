@@ -34,12 +34,12 @@ class Labour extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['labour_id', 'name', 'mobile_no', 'alternate_no', 'address', 'bank_id'], 'required'],
+            [['name', 'mobile_no', 'alternate_no', 'address', 'bank_id'], 'required'],
             [['labour_id', 'mobile_no', 'alternate_no'], 'integer'],
             [['type'], 'string'],
             [['name'], 'string', 'max' => 50],
             [['address'], 'string', 'max' => 255],
-            [['bank_id'], 'string', 'max' => 100],
+            [['bank_id'], 'string'],
         ];
     }
 

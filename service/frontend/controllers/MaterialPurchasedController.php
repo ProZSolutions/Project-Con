@@ -105,11 +105,11 @@ class MaterialPurchasedController extends Controller
     $model=$this->findModel($id);      
     if($model->delete()) { 
       $this->setHeader(200);
-       echo json_encode(array('status'=>"success",'data'=>array('message'=>'record deleted successfully')),JSON_PRETTY_PRINT);       
+      echo json_encode(array('status'=>"success",'data'=>array('message'=>'record deleted successfully')),JSON_PRETTY_PRINT);     
     }
     else {         
       $this->setHeader(400);
-       echo json_encode(array('status'=>"error",'data'=>array('message'=>'record not deleted')),JSON_PRETTY_PRINT);
+      echo json_encode(array('status'=>"error",'data'=>array('message'=>'record not deleted')),JSON_PRETTY_PRINT);
     }
   }
   //filter with supplier with date

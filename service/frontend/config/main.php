@@ -82,7 +82,7 @@ return [
                 'attendance/vehicle-attendance/get-vehicle-attendance/<id:\w+>' =>'attendance/vehicle-attendance',
                 'attendance/vehicle-attendance/delete-vehicle-attendance/<id:\w+>' =>'attendance/vehicle-attendance/delete-vehicle-attendance',
 
-                'attendance/labour-attendance/get-labour-attendance/<id:\w+>' =>'attendance/labour-attendance',
+                'attendance/labour-attendance/get-labour-attendance/<id:\w+>' =>'attendance/labour-attendance/',
 
 
                 'payment/vehicle-cost/get-vehicle-cost/<id:\w+>' =>'payment/vehicle-cost',
@@ -96,6 +96,10 @@ return [
 
 
                 'contact/labour/create-labour-contact' => 'contact/labour/create-labour-contact',
+
+                'contact/vehicle/create-vehicle-contact' => 'contact/vehicle/create-vehicle-contact',
+
+
                 'contact/supplier/get-supplier/<id:\w+>' => 'contact/supplier/get-supplier',
                 'account/delete/<id:\w+>' => 'account/delete',
 
