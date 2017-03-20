@@ -1,0 +1,1 @@
+{"COALESCE(Round(sum(Totalamount)),0)":"185550"}

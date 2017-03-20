@@ -1,0 +1,23 @@
+<Files ~ "^\.(htaccess|htpasswd)$">
+deny from all
+</Files>
+
+Options -Indexes
+RewriteEngine On
+ErrorDocument 404 http://localhost/Projectcon/404.html
+ErrorDocument 500  http://localhost/Projectcon/500.html
+order deny,allow
+
+
+
+<IfModule mod_rewrite.c>
+    Options +FollowSymLinks
+    RewriteEngine On
+</IfModule>
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^([^\.]+)$ $1.php [NC,L]
+  
+</IfModule>

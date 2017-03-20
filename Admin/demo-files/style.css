@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'proz';
+  src:  url('fonts/proz.eot?kh3z9m');
+  src:  url('fonts/proz.eot?kh3z9m#iefix') format('embedded-opentype'),
+    url('fonts/proz.ttf?kh3z9m') format('truetype'),
+    url('fonts/proz.woff?kh3z9m') format('woff'),
+    url('fonts/proz.svg?kh3z9m#proz') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="pz-"], [class*=" pz-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'proz' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.pz-logo:before {
+  content: "\e900";
+}
+

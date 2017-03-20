@@ -1,0 +1,12 @@
+
+body{
+font-family: arial;
+font-size: 18px;
+overflow-y: scroll;
+margin: 0px;
+padding: 0px;
+background-image: url(3.jpg);
+background-repeat:no-repeat;
+background-size: 100% 800px;
+}
+
